@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For you</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Patrick+Hand&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="locked">
+<noscript>This page needs JavaScript to open.</noscript>
+<div id="curtain" aria-hidden="true"></div>
+
+<!-- Opening screen -->
+<header class="intro" id="intro">
+  <p class="intro__birthday">Happy Birthday!</p>
+  <h1 class="name"></h1>
+  <p class="intro__msg" data-intro></p>
+  <button class="btn" id="enter">Come in <span aria-hidden="true">💗</span></button>
+</header>
+
+<div id="site" hidden>
+  <nav class="bar" aria-label="Contents">
+    <a href="#story" class="bar__name" data-name></a>
+    <button class="bar__btn" aria-expanded="false" aria-controls="toc">Contents</button>
+    <ol id="toc" class="toc">
+      <li><a href="#story">Our story</a></li>
+      <li><a href="#photos">Photo memories</a></li>
+      <li><a href="#reasons">Things I love about you</a></li>
+      <li><a href="#jar">Memory jar</a></li>
+      <li><a href="#open">Open when...</a></li>
+      <li><a href="#playlist">Songs that remind me of you</a></li>
+      <li><a href="#future">Things we still have to do</a></li>
+      <li><a href="#final">One last thing</a></li>
+    </ol>
+  </nav>
+  <div class="progress"></div>
+
+  <main>
+    <section id="story">
+      <h2 class="reveal">Our story <span aria-hidden="true">📖</span></h2>
+      <p class="note">The moments, in order, more or less.</p>
+      <ol class="timeline" id="timeline"></ol>
+    </section>
+
+    <section id="photos" class="deep">
+      <h2 class="reveal">Photo memories <span aria-hidden="true">📸</span></h2>
+      <p class="note">Tap a photo to look closer.</p>
+      <div class="table" id="gallery"></div>
+    </section>
+
+    <section id="reasons">
+      <h2 class="reveal">Things I love about you <span aria-hidden="true">💕</span></h2>
+      <p class="note">Tap one to read the rest.</p>
+      <div id="reasons-list"></div>
+    </section>
+
+    <section id="jar" class="deep">
+      <h2 class="reveal">Memory jar <span aria-hidden="true">🫙</span></h2>
+      <p class="note">Tap the jar. It picks for you.</p>
+      <div class="jarwrap">
+        <button id="jar-btn" aria-label="Pull a memory out of the jar">
+          <svg viewBox="0 0 200 250" aria-hidden="true">
+            <rect x="58" y="8" width="84" height="26" rx="3" fill="#D96C8A"/>
+            <path d="M64 34h72v14c28 8 40 24 40 48v110c0 18-12 30-30 30H54c-18 0-30-12-30-30V96c0-24 12-40 40-48z" fill="#fff" fill-opacity=".6" stroke="#D96C8A" stroke-width="3"/>
+            <g fill="#F8B6C8">
+              <rect x="50" y="190" width="38" height="24" transform="rotate(-12 69 202)"/>
+              <rect x="92" y="196" width="42" height="26" fill="#F6E7C1" transform="rotate(8 113 209)"/>
+              <rect x="120" y="176" width="36" height="24" transform="rotate(-25 138 188)"/>
+              <rect x="62" y="168" width="34" height="22" fill="#F4A6B9" transform="rotate(20 79 179)"/>
+            </g>
+            <rect x="62" y="104" width="76" height="44" fill="#FFF5F7" stroke="#D96C8A"/>
+            <text x="100" y="132" text-anchor="middle" font-family="Delicious Handrawn,Bradley Hand,cursive" font-size="21" fill="#3D3034">memories</text>
+          </svg>
+        </button>
+        <blockquote class="slip" id="slip" aria-live="polite"></blockquote>
+      </div>
+    </section>
+
+    <section id="open">
+      <h2 class="reveal">Open when... <span aria-hidden="true">💌</span></h2>
+      <p class="note">Letters for the days you need one.</p>
+      <div class="envs" id="envelopes"></div>
+      <!-- Easter egg: a tiny pressed flower tucked in the corner -->
+      <button class="flower" id="flower" aria-label="A tiny pressed flower">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="#D96C8A"><circle cx="12" cy="6" r="4"/><circle cx="18" cy="12" r="4"/><circle cx="12" cy="18" r="4"/><circle cx="6" cy="12" r="4"/></g><circle cx="12" cy="12" r="3" fill="#F6E7C1"/></svg>
+      </button>
+    </section>
+
+    <section id="playlist" class="deep">
+      <div class="head">
+        <div>
+          <h2 class="reveal">Songs that remind me of you <span aria-hidden="true">🎵</span></h2>
+          <p class="note">Music starts when you come in. Use the player to pause or replay.</p>
+        </div>
+        <div class="vinyl" aria-hidden="true"></div>
+      </div>
+      <ol class="tracks" id="tracks"></ol>
+    </section>
+
+    <section id="future" class="deep">
+      <h2 class="reveal">Things we still have to do <span aria-hidden="true">✨</span></h2>
+      <p class="note">Tick them off as we go.</p>
+      <ul class="bucket" id="bucket"></ul>
+      <p class="count" id="count"></p>
+    </section>
+
+    <section id="final">
+      <h2 class="reveal">That's the story so far. <span aria-hidden="true">🌸</span></h2>
+      <button class="btn" id="last">One last thing... <span aria-hidden="true">💗</span></button>
+      <article class="letter" id="letter" hidden></article>
+    </section>
+  </main>
+
+  <footer>Made by hand for <span data-name></span> <span aria-hidden="true">💗</span>. A few things are tucked away here.</footer>
+</div>
+
+<!-- One dialog shared by the lightbox, the letters and the secret -->
+<dialog id="dlg">
+  <form method="dialog"><button class="x" aria-label="Close">&times;</button></form>
+  <div id="dlg-body"></div>
+</dialog>
+
+<script src="script.js"></script>
+</body>
+</html>
